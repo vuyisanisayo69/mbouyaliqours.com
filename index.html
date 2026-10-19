@@ -701,7 +701,7 @@
     .info-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(21,94,239,.16); }
     footer { background: rgba(255,255,255,.94); }
 
-    .float-wa {
+    .float-deal {
       position: fixed;
       right: 20px;
       bottom: 20px;
@@ -711,20 +711,20 @@
       gap: 8px;
       padding: 13px 18px;
       border-radius: 999px;
-      background: #16803c;
+      background: linear-gradient(135deg, #f97316, #ff4d6d);
       color: #fff;
       font-weight: 800;
       text-decoration: none;
-      box-shadow: 0 12px 28px rgba(22,128,60,.40);
+      box-shadow: 0 12px 28px rgba(249,115,22,.45);
       animation: bob2 3.2s ease-in-out infinite;
     }
 
-    .float-wa::before {
+    .float-deal::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      box-shadow: 0 0 0 0 rgba(22,128,60,.55);
+      box-shadow: 0 0 0 0 rgba(249,115,22,.55);
       animation: pulse 2.4s infinite;
     }
 
@@ -736,10 +736,10 @@
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
     @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-16px) rotate(3deg); } }
     @keyframes bob2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-    @keyframes pulse { to { box-shadow: 0 0 0 18px rgba(22,128,60,0); } }
+    @keyframes pulse { to { box-shadow: 0 0 0 18px rgba(249,115,22,0); } }
 
     @media (max-width: 1000px) { .hero-floaters { display: none; } }
-    @media (max-width: 650px) { .float-wa { padding: 12px 15px; right: 14px; bottom: 14px; } }
+    @media (max-width: 650px) { .float-deal { padding: 12px 15px; right: 14px; bottom: 14px; } }
 
     @media (max-width: 950px) {
       header { padding: 14px 4%; }
@@ -831,6 +831,19 @@
         <span class="floater f2">🥃<small>Spirits</small></span>
         <span class="floater f3">🍷<small>Wine</small></span>
       </div>
+    </section>
+
+    <section id="picks" class="section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Best prices</div>
+          <h2>Today's picks</h2>
+          <p>Our best-priced selection for today. Guide prices, with stock confirmed by the store.</p>
+        </div>
+        <a class="button secondary" href="#catalogue">See full catalogue</a>
+      </div>
+
+      <div class="grid" id="picks-grid" aria-live="polite"></div>
     </section>
 
     <section id="catalogue" class="section">
@@ -1020,7 +1033,7 @@
     </div>
   </div>
 
-  <a class="float-wa" href="https://wa.me/27632046153" target="_blank" rel="noopener noreferrer" aria-label="Chat with the store on WhatsApp">✆ <span>Chat on WhatsApp</span></a>
+  <a class="float-deal" href="#picks" aria-label="See today's best prices">🔥 <span>Best prices</span></a>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
@@ -1032,6 +1045,7 @@
 
       To change a price, edit the "price" number of the product below
       (in rand, no "R" sign). Set active: false to hide ordering for a product.
+      Add pick: true to a product to list it under Today's picks.
       To add a photo, put the file in an "images" folder and set
       image: "images/your-photo.jpg".
     */
@@ -1044,7 +1058,7 @@
 
     const products = [
       // Beer
-      { id: 1, name: "Castle Lager 340ml", category: "Beer",
+      { id: 1, pick: true, name: "Castle Lager 340ml", category: "Beer",
         description: "6 pack bottles", price: 95, image: "", active: true },
       { id: 2, name: "Carling Black Label 440ml", category: "Beer",
         description: "6 pack cans", price: 110, image: "", active: true },
@@ -1054,7 +1068,7 @@
         description: "6 pack bottles", price: 165, image: "", active: true },
 
       // Cider
-      { id: 5, name: "Savanna Dry 330ml", category: "Cider",
+      { id: 5, pick: true, name: "Savanna Dry 330ml", category: "Cider",
         description: "6 pack bottles", price: 120, image: "", active: true },
       { id: 6, name: "Hunters Gold 330ml", category: "Cider",
         description: "6 pack bottles", price: 115, image: "", active: true },
@@ -1062,7 +1076,7 @@
         description: "6 pack bottles", price: 110, image: "", active: true },
 
       // Wine
-      { id: 8, name: "Four Cousins Sweet Red 750ml", category: "Wine",
+      { id: 8, pick: true, name: "Four Cousins Sweet Red 750ml", category: "Wine",
         description: "Single bottle", price: 75, image: "", active: true },
       { id: 9, name: "Drostdy-Hof Claret Select 750ml", category: "Wine",
         description: "Single bottle", price: 60, image: "", active: true },
@@ -1070,7 +1084,7 @@
         description: "Single bottle", price: 95, image: "", active: true },
 
       // Spirits
-      { id: 11, name: "Smirnoff 1818 Vodka 750ml", category: "Spirits",
+      { id: 11, pick: true, name: "Smirnoff 1818 Vodka 750ml", category: "Spirits",
         description: "Single bottle", price: 175, image: "", active: true },
       { id: 12, name: "Klipdrift Premium Brandy 750ml", category: "Spirits",
         description: "Single bottle", price: 200, image: "", active: true },
@@ -1093,7 +1107,6 @@
     const stickers = [
       "MBOUYA PICK",
       "FEATURED PICK",
-      "TODAY'S PICK",
       "STORE SELECTION"
     ];
 
@@ -1153,6 +1166,10 @@
     }
 
     function renderProducts() {
+      byId("picks-grid").innerHTML = products
+        .filter(product => product.pick && isConfigured(product))
+        .map(productCard).join("");
+
       const query = byId("search").value.trim().toLowerCase();
       const sort = byId("sort").value;
 
@@ -1193,7 +1210,7 @@
         return;
       }
 
-      byId("products").innerHTML = list.map(product => {
+      function productCard(product) {
         const name = escapeHTML(product.name);
         const category = escapeHTML(product.category);
         const description = escapeHTML(product.description);
@@ -1207,7 +1224,7 @@
         return `
           <article class="product">
             <div class="product-image">
-              <span class="sticker">${dailySticker(product.id)}</span>
+              <span class="sticker">${product.pick ? "TODAY'S PICK" : dailySticker(product.id)}</span>
               ${imageMarkup}
             </div>
 
@@ -1233,7 +1250,9 @@
             </div>
           </article>
         `;
-      }).join("");
+      }
+
+      byId("products").innerHTML = list.map(productCard).join("");
     }
 
     function renderBasket() {
@@ -1386,7 +1405,7 @@
       openWhatsApp(message);
     }
 
-    byId("products").addEventListener("click", event => {
+    [byId("products"), byId("picks-grid")].forEach(grid => grid.addEventListener("click", event => {
       const resetButton = event.target.closest("#reset-search");
 
       if (resetButton) {
@@ -1407,7 +1426,7 @@
       if (!button) return;
 
       addProduct(Number(button.dataset.productAction));
-    });
+    }));
 
     byId("categories").addEventListener("click", event => {
       const button = event.target.closest("[data-category]");
