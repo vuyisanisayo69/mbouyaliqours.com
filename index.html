@@ -4,190 +4,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111111">
-  <meta name="description" content="Mbouya Liquor Store — Cape Town. Browse our catalogue and enquire via WhatsApp.">
+  <meta name="theme-color" content="#155eef">
+  <meta name="description" content="Mbouya Liquor Store in Cape Town. Explore our catalogue and contact us to enquire about products and availability.">
   <title>Mbouya Liquor Store | Cape Town</title>
 
   <style>
     :root {
-      --black: #111111;
-      --panel: #1d1d1d;
-      --orange: #ff6a00;
-      --yellow: #ffc400;
+      --blue: #155eef;
+      --blue-dark: #124dcc;
+      --blue-light: #eaf1ff;
+      --orange: #f97316;
+      --ink: #172033;
+      --muted: #64748b;
+      --page: #f4f7fb;
       --white: #ffffff;
-      --muted: #b8b8b8;
-      --line: #363636;
+      --line: #dbe3ee;
+      --success: #15803d;
+      --shadow: 0 8px 25px rgba(23, 32, 51, .06);
     }
 
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
     body {
       margin: 0;
-      background: #101010;
-      color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      line-height: 1.5;
     }
 
     button, input, select { font: inherit; }
     button { cursor: pointer; }
+    button:disabled { opacity: .6; cursor: not-allowed; }
     a { color: inherit; }
+    img { max-width: 100%; }
+
+    button:focus-visible, a:focus-visible,
+    input:focus-visible, select:focus-visible {
+      outline: 3px solid #93b4ff;
+      outline-offset: 3px;
+    }
 
     .notice {
-      background: var(--orange);
-      color: #111;
+      background: var(--blue);
+      color: #fff;
+      padding: 9px 15px;
       text-align: center;
-      padding: 9px 14px;
-      font-size: 13px;
-      font-weight: bold;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
     header {
-      background: #161616;
-      border-bottom: 1px solid var(--line);
-      padding: 18px 5%;
+      position: sticky;
+      top: 0;
+      z-index: 5;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
       flex-wrap: wrap;
+      padding: 15px 5%;
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 2px 12px rgba(15,23,42,.04);
     }
 
     .brand {
-      font-size: 24px;
+      text-decoration: none;
+      font-size: 22px;
       font-weight: 900;
-      letter-spacing: -1px;
+      letter-spacing: -.8px;
+      line-height: 1.2;
     }
 
-    .brand span { color: var(--orange); }
+    .brand .brand-blue { color: var(--blue); }
+    .brand .brand-orange { color: var(--orange); }
 
-    .header-actions {
+    nav, .header-actions {
       display: flex;
+      align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .button {
-      border: 0;
+    nav a {
+      padding: 8px 10px;
       border-radius: 6px;
-      padding: 12px 16px;
-      font-weight: bold;
       text-decoration: none;
-      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .primary { background: var(--orange); color: #111; }
-    .secondary { background: #292929; color: white; border: 1px solid #444; }
+    nav a:hover { background: var(--blue-light); color: var(--blue); }
 
-    main { max-width: 1200px; margin: auto; padding: 24px 5%; }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      min-height: 42px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      padding: 10px 15px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 800;
+      transition: background .15s, border-color .15s, transform .15s;
+    }
+
+    .button:active { transform: scale(.98); }
+
+    .primary { background: var(--blue); color: white; }
+    .primary:hover { background: var(--blue-dark); }
+
+    .orange-button { background: var(--orange); color: white; }
+    .orange-button:hover { background: #ea580c; }
+
+    .secondary {
+      color: var(--ink);
+      background: white;
+      border-color: #cbd5e1;
+    }
+
+    .secondary:hover {
+      background: var(--blue-light);
+      border-color: var(--blue);
+    }
+
+    .whatsapp { background: #16803c; color: white; }
+    .whatsapp:hover { background: #116530; }
+
+    main {
+      width: min(1200px, 100%);
+      margin: auto;
+      padding: 25px 5%;
+    }
 
     .hero {
-      min-height: 310px;
-      padding: clamp(25px, 6vw, 65px);
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
+      min-height: 330px;
+      padding: clamp(25px, 6vw, 65px);
+      border: 1px solid #d5e2fb;
+      border-radius: 16px;
       background:
-        radial-gradient(ellipse at 85% 30%, #763000 0, transparent 45%),
-        linear-gradient(120deg, #242424, #101010 75%);
-      border: 1px solid #39312a;
-      border-radius: 14px;
-      overflow: hidden;
+        radial-gradient(ellipse at 85% 15%, #d4e3ff 0, transparent 42%),
+        linear-gradient(120deg, #fff 0%, #eef4ff 100%);
     }
 
-    .hero-content { max-width: 620px; }
+    .hero-content { max-width: 650px; }
 
     .eyebrow {
-      color: var(--yellow);
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      color: var(--blue);
       font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 1;
-      margin: 15px 0;
+      margin: 14px 0;
+      font-size: clamp(36px, 6vw, 65px);
+      line-height: 1.02;
       letter-spacing: -2px;
     }
 
-    h1 span { color: var(--orange); }
+    h1 .blue-text { color: var(--blue); }
+    h1 .orange-text { color: var(--orange); }
 
-    .hero p, .muted { color: var(--muted); line-height: 1.65; }
+    .hero p {
+      max-width: 540px;
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .hero-note {
+      margin-top: 15px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .section { margin-top: 38px; }
 
     .section-heading {
       display: flex;
       align-items: end;
       justify-content: space-between;
-      gap: 15px;
       flex-wrap: wrap;
-      margin: 35px 0 18px;
+      gap: 15px;
+      margin-bottom: 18px;
     }
 
-    h2 { margin: 0; font-size: 26px; }
-    .section-heading p { color: var(--muted); margin-bottom: 0; }
+    h2 { margin: 0; font-size: clamp(23px, 3vw, 30px); letter-spacing: -.5px; }
+    h3 { margin-top: 0; }
+
+    .muted { color: var(--muted); }
+    .section-heading p { margin: 5px 0 0; color: var(--muted); }
 
     .controls {
       display: grid;
-      grid-template-columns: 1fr 220px;
+      grid-template-columns: minmax(0, 1fr) 220px;
       gap: 12px;
       margin: 18px 0;
     }
 
     input, select {
-      background: #202020;
-      border: 1px solid #414141;
-      color: white;
-      padding: 13px;
-      border-radius: 6px;
       width: 100%;
+      min-height: 45px;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      background: white;
+      color: var(--ink);
     }
 
     .categories {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
-      margin: 18px 0 24px;
+      gap: 9px;
+      margin: 20px 0;
     }
 
     .category {
-      background: #252525;
-      color: white;
-      border: 1px solid #444;
+      border: 1px solid #d5dce8;
       border-radius: 30px;
-      padding: 10px 15px;
+      padding: 9px 16px;
+      background: white;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
     }
 
+    .category:hover { border-color: var(--blue); color: var(--blue); }
+
     .category.active {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: #111;
-      font-weight: bold;
+      color: white;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .catalogue-status {
+      padding: 13px 15px;
+      margin: 15px 0;
+      border: 1px solid #f6d6a6;
+      border-radius: 8px;
+      background: #fff8e8;
+      color: #854d0e;
+      font-size: 13px;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+      gap: 17px;
     }
 
     .product {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: white;
+      box-shadow: var(--shadow);
+      transition: transform .18s, box-shadow .18s;
+    }
+
+    .product:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(23,32,51,.1);
     }
 
     .product-image {
-      aspect-ratio: 4 / 3;
+      position: relative;
       display: grid;
       place-items: center;
-      padding: 15px;
-      background: linear-gradient(145deg, #292929, #171717);
-      color: #aaa;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      padding: 12px;
+      background: linear-gradient(145deg, #edf3ff, #f8fafc);
+      color: #64748b;
       text-align: center;
-      font-size: 13px;
-      position: relative;
+      font-size: 12px;
     }
 
     .product-image img {
@@ -200,252 +311,548 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      background: var(--yellow);
-      color: #111;
+      z-index: 1;
       border-radius: 4px;
-      padding: 6px 8px;
+      padding: 5px 8px;
+      background: var(--orange);
+      color: white;
       font-size: 10px;
       font-weight: 900;
     }
 
-    .product-body { padding: 15px; }
-    .product h3 { margin: 0 0 8px; font-size: 16px; }
-    .product-category { color: var(--muted); font-size: 12px; }
-    .price { font-weight: bold; font-size: 18px; margin: 14px 0; }
-    .pending { color: var(--yellow); font-size: 12px; }
+    .product-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 15px;
+    }
 
-    .product .button { width: 100%; text-align: center; }
-    button:disabled { opacity: .45; cursor: not-allowed; }
+    .product-category {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .product h3 {
+      margin: 7px 0;
+      overflow-wrap: anywhere;
+      font-size: 16px;
+    }
+
+    .product-description {
+      min-height: 36px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .price {
+      margin: 13px 0 5px;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .pending {
+      min-height: 34px;
+      margin: 0 0 10px;
+      color: #9a5b08;
+      font-size: 11px;
+    }
+
+    .product .button { width: 100%; margin-top: auto; }
 
     .empty {
-      border: 1px dashed #555;
-      border-radius: 10px;
-      padding: 30px;
-      color: var(--muted);
-      text-align: center;
       grid-column: 1 / -1;
+      padding: 35px 20px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      background: white;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .cart-panel {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .cart-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-item-name { font-weight: 800; }
+    .cart-item-meta { font-size: 12px; color: var(--muted); }
+
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .small-button {
+      min-width: 34px;
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .small-button:hover { background: var(--blue-light); }
+    .remove-button { padding: 7px 9px; color: #b91c1c; }
+
+    .cart-total {
+      margin: 20px 0;
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .cart-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 7px;
+      background: #eff6ff;
+      color: #1e40af;
+      font-size: 13px;
     }
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 35px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
     }
 
-    .info-card, .sponsor {
-      background: #1b1b1b;
+    .info-card {
+      padding: 23px;
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 22px;
+      background: white;
     }
 
-    .info-card h3 { margin-top: 0; }
-    .sponsor { margin-top: 20px; text-align: center; }
-    .sponsor strong { color: var(--yellow); }
+    .info-icon {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 13px;
+      border-radius: 10px;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 21px;
+    }
+
+    .info-card h3 { margin-bottom: 8px; font-size: 18px; }
+    .info-card p { color: var(--muted); font-size: 14px; }
+
+    .sponsor {
+      position: relative;
+      overflow: hidden;
+      margin-top: 22px;
+      padding: 28px 20px;
+      border: 1px dashed #9db8ed;
+      border-radius: 12px;
+      background: linear-gradient(120deg, white, #edf3ff);
+      text-align: center;
+    }
+
+    .sponsor strong {
+      color: var(--blue);
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
 
     footer {
-      margin-top: 40px;
+      margin-top: 45px;
+      padding: 30px 5%;
       border-top: 1px solid var(--line);
-      padding: 28px 5%;
-      text-align: center;
+      background: white;
       color: var(--muted);
+      text-align: center;
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
+
+    footer strong { color: var(--ink); }
 
     .age-overlay {
       position: fixed;
       inset: 0;
-      z-index: 10;
-      background: rgba(0,0,0,.94);
+      z-index: 20;
       display: grid;
       place-items: center;
+      overflow-y: auto;
       padding: 20px;
+      background: rgba(23,32,51,.68);
     }
 
+    .age-overlay[hidden] { display: none; }
+
     .age-box {
-      max-width: 430px;
-      background: #1d1d1d;
-      border: 1px solid #444;
-      border-top: 4px solid var(--orange);
-      border-radius: 12px;
-      padding: 28px;
+      width: min(430px, 100%);
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--blue);
+      border-radius: 13px;
+      background: white;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
       text-align: center;
     }
 
-    .age-box h2 { margin-bottom: 12px; }
-    .age-box p { color: var(--muted); line-height: 1.6; }
-    .age-buttons { display: flex; gap: 10px; margin-top: 20px; }
-    .age-buttons button { flex: 1; }
+    .age-box h2 { margin: 12px 0; }
+    .age-box p { color: var(--muted); font-size: 14px; }
+    .age-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
 
-    .cart-panel {
-      margin-top: 30px;
-      background: #1b1b1b;
+    .exit-screen {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .exit-screen .panel {
+      max-width: 480px;
+      padding: 35px;
       border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 22px;
+      border-radius: 12px;
+      background: white;
     }
 
-    .cart-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line);
+    .toast {
+      position: fixed;
+      z-index: 30;
+      right: 20px;
+      bottom: 20px;
+      width: min(360px, calc(100% - 40px));
+      padding: 15px 18px;
+      border-radius: 9px;
+      background: #172033;
+      color: white;
+      box-shadow: 0 10px 35px rgba(0,0,0,.2);
+      font-size: 14px;
     }
 
-    .cart-total { font-size: 20px; font-weight: bold; margin: 18px 0; }
+    .toast[hidden] { display: none; }
 
-    @media (max-width: 850px) {
-      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .info-grid { grid-template-columns: 1fr; }
+    @media (max-width: 950px) {
+      header { padding: 14px 4%; }
+      nav { order: 3; width: 100%; }
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      main { padding: 22px 4%; }
     }
 
-    @media (max-width: 520px) {
-      header { padding: 16px 4%; }
-      main { padding: 18px 4%; }
-      .brand { font-size: 21px; }
+    @media (max-width: 650px) {
+      .brand { font-size: 19px; }
+      .header-actions { width: 100%; }
+      .header-actions .button { flex: 1; }
+      nav { justify-content: space-between; gap: 3px; }
+      nav a { padding: 8px 5px; font-size: 12px; }
+      .hero { min-height: 310px; padding: 25px 20px; }
+      h1 { font-size: clamp(35px, 10vw, 50px); }
       .controls { grid-template-columns: 1fr; }
-      .grid { gap: 10px; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .product-body { padding: 11px; }
       .product h3 { font-size: 14px; }
-      .product .button { padding: 10px 5px; font-size: 12px; }
-      .age-buttons { flex-direction: column; }
+      .product-description { font-size: 11px; }
+      .product .button { padding: 9px 6px; font-size: 12px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .cart-panel { padding: 15px; }
+      .cart-row { grid-template-columns: 1fr; }
+      .cart-actions { justify-content: start; }
+      .age-box { padding: 23px; }
+      .age-buttons { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="notice">
-    18+ ONLY · PLEASE DRINK RESPONSIBLY · SOUTH AFRICA
+    ADULTS 18+ ONLY &nbsp; | &nbsp; PLEASE DRINK RESPONSIBLY
   </div>
 
   <header>
-    <div class="brand">MBOUYA <span>LIQUOR STORE</span></div>
+    <a class="brand" href="#home" aria-label="Mbouya Liquor Store home">
+      MBOUYA <span class="brand-blue">LIQUOR</span>
+      <span class="brand-orange">STORE</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
     <div class="header-actions">
-      <a class="button secondary" href="#catalogue">Browse catalogue</a>
-      <a class="button primary" href="#cart">My basket (<span id="cart-count">0</span>)</a>
+      <a class="button secondary" href="#catalogue">Browse products</a>
+      <a class="button primary" href="#cart">
+        Basket <span id="cart-count">0</span>
+      </a>
     </div>
   </header>
 
-  <main>
+  <main id="home">
     <section class="hero">
       <div class="hero-content">
         <div class="eyebrow">Cape Town · Your local store</div>
-        <h1>YOUR STORE.<br><span>YOUR SELECTION.</span></h1>
+        <h1>YOUR STORE.<br><span class="blue-text">YOUR SELECTION.</span></h1>
         <p>
-          Welcome to Mbouya Liquor Store. Explore our catalogue
-          and contact us to confirm product availability, prices,
-          collection and delivery options.
+          Welcome to Mbouya Liquor Store. Explore our online catalogue
+          and contact us to enquire about products, current prices,
+          stock availability and collection or delivery options.
         </p>
-        <a class="button primary" href="#catalogue">Explore catalogue →</a>
+        <div class="hero-actions">
+          <a class="button primary" href="#catalogue">Explore catalogue →</a>
+          <a class="button secondary" href="#contact">Contact our store</a>
+        </div>
+        <div class="hero-note">
+          Product prices and availability will be confirmed by the store.
+        </div>
       </div>
     </section>
 
-    <section id="catalogue">
+    <section id="catalogue" class="section">
       <div class="section-heading">
         <div>
+          <div class="eyebrow">Find your selection</div>
           <h2>Our catalogue</h2>
-          <p>Product and pricing information will be updated soon.</p>
+          <p>Real products, photos and prices will be added soon.</p>
         </div>
       </div>
 
+      <div class="catalogue-status">
+        <strong>Catalogue setup in progress:</strong>
+        All products below are sample placeholders. They are not confirmed
+        inventory and cannot be purchased until genuine product details
+        and prices have been entered.
+      </div>
+
       <div class="controls">
-        <input id="search" type="search" placeholder="Search products..." aria-label="Search products">
+        <input id="search" type="search"
+          placeholder="Search products or categories..."
+          aria-label="Search products">
+
         <select id="sort" aria-label="Sort products">
-          <option value="default">Featured products</option>
+          <option value="featured">Featured order</option>
           <option value="az">Name: A–Z</option>
+          <option value="za">Name: Z–A</option>
         </select>
       </div>
 
-      <div class="categories" id="categories">
-        <button class="category active" data-category="All">All products</button>
-        <button class="category" data-category="Beer">Beer</button>
-        <button class="category" data-category="Cider">Cider</button>
-        <button class="category" data-category="Wine">Wine</button>
-        <button class="category" data-category="Spirits">Spirits</button>
-        <button class="category" data-category="Other">Other</button>
+      <div class="categories" id="categories" aria-label="Product categories">
+        <button type="button" class="category active" data-category="All">All products</button>
+        <button type="button" class="category" data-category="Beer">Beer</button>
+        <button type="button" class="category" data-category="Cider">Cider</button>
+        <button type="button" class="category" data-category="Wine">Wine</button>
+        <button type="button" class="category" data-category="Spirits">Spirits</button>
+        <button type="button" class="category" data-category="Other">Other</button>
       </div>
 
-      <div class="grid" id="products"></div>
+      <div class="grid" id="products" aria-live="polite"></div>
+      <p class="muted" id="result-count"></p>
+    </section>
+
+    <section id="cart" class="section cart-panel">
+      <div class="cart-top">
+        <div>
+          <div class="eyebrow">Your selection</div>
+          <h2>Shopping basket</h2>
+        </div>
+        <button type="button" class="button secondary" id="clear-cart">
+          Clear basket
+        </button>
+      </div>
 
       <p class="muted">
-        All products shown below are demonstration placeholders, not confirmed
-        inventory. Prices and availability must be confirmed by the store.
+        Add configured products here. Final stock, delivery fees and order
+        details must be confirmed with the store.
       </p>
-    </section>
 
-    <section id="cart" class="cart-panel">
-      <h2>Your basket</h2>
-      <p class="muted">Add products after verified prices and availability have been entered.</p>
-      <div id="cart-items"></div>
-      <div class="cart-total" id="cart-total">Subtotal: Not available yet</div>
-      <button class="button primary" id="checkout" disabled>
-        Continue to WhatsApp
-      </button>
-      <p class="muted" id="cart-message">
-        Online ordering will activate once the catalogue is configured.
-      </p>
-    </section>
+      <div id="cart-items" aria-live="polite"></div>
 
-    <section class="info-grid">
-      <div class="info-card">
-        <h3>📍 Visit us</h3>
-        <p>3 Riebeek St, Cape Town City Centre, Cape Town, 8000.</p>
-        <p class="muted">Please confirm opening hours before visiting.</p>
+      <div class="cart-total" id="cart-total">Subtotal: R0.00</div>
+
+      <div class="cart-buttons">
+        <button type="button" class="button primary" id="checkout">
+          Continue to WhatsApp
+        </button>
+        <a class="button secondary" href="#catalogue">Continue shopping</a>
       </div>
-      <div class="info-card">
-        <h3>🛍 Collection & delivery</h3>
-        <p>Ask us about collection and delivery availability.</p>
-        <p class="muted">Delivery areas, fees and minimum orders are not yet configured.</p>
-      </div>
-      <div class="info-card">
-        <h3>💬 WhatsApp enquiries</h3>
-        <p>Contact the store to ask about products and availability.</p>
-        <a class="button secondary" href="https://wa.me/27632046153"
-           target="_blank" rel="noopener">Message the store</a>
+
+      <div class="message" id="cart-message" role="status">
+        Your basket is empty. Product ordering will be available when
+        verified catalogue entries are configured.
       </div>
     </section>
 
-    <section class="sponsor">
+    <section id="about" class="section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Why shop with us?</div>
+          <h2>Welcome to Mbouya</h2>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">⌕</div>
+          <h3>Easy browsing</h3>
+          <p>Search the catalogue and browse categories to find products once our verified inventory is uploaded.</p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">▣</div>
+          <h3>Collection and delivery</h3>
+          <p>Contact the store to confirm collection options, delivery areas, fees and availability.</p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">↗</div>
+          <h3>Direct communication</h3>
+          <p>Send enquiries to our store using WhatsApp. Orders remain subject to confirmation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="sponsor" aria-label="Sponsor section">
+      <div class="eyebrow">Partner with us</div>
       <strong>SPHOLA · SPONSORSHIP SPACE</strong>
-      <p class="muted">Sponsor logo, approved artwork and campaign details to be added.</p>
+      <p class="muted">
+        Sponsor logo, approved artwork and campaign details will be added here.
+      </p>
+      <button type="button" class="button secondary" id="sponsor-info">
+        Sponsorship enquiries
+      </button>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Get in touch</div>
+          <h2>Contact our store</h2>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">⌖</div>
+          <h3>Visit us</h3>
+          <p>3 Riebeek St, Cape Town City Centre, Cape Town, 8000.</p>
+          <a class="button secondary"
+             href="https://www.google.com/maps/search/?api=1&query=3+Riebeek+St+Cape+Town+8000"
+             target="_blank" rel="noopener noreferrer">View location ↗</a>
+        </article>
+
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">✆</div>
+          <h3>WhatsApp</h3>
+          <p>Ask about products, prices and current availability.</p>
+          <a class="button whatsapp"
+             href="https://wa.me/27632046153"
+             target="_blank" rel="noopener noreferrer">Message the store ↗</a>
+        </article>
+
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">◷</div>
+          <h3>Store information</h3>
+          <p>Opening hours, stock availability and delivery conditions have not yet been added.</p>
+          <button type="button" class="button secondary" id="hours-info">
+            Ask about opening hours
+          </button>
+        </article>
+      </div>
     </section>
   </main>
 
   <footer>
     <strong>MBOUYA LIQUOR STORE</strong><br>
     3 Riebeek St, Cape Town City Centre, Cape Town, 8000<br>
+    <a href="https://wa.me/27632046153">WhatsApp: +27 63 204 6153</a><br>
     Adults 18+ only. Please drink responsibly.<br>
-    Product availability, prices and promotions must be confirmed by the store.
+    Product prices, stock, promotions and fulfilment must be confirmed by the store.
+    <p>© <span id="year"></span> Mbouya Liquor Store. All rights reserved.</p>
   </footer>
 
-  <div class="age-overlay" id="age-overlay" role="dialog"
-       aria-modal="true" aria-labelledby="age-title">
+  <div class="age-overlay" id="age-overlay"
+       role="dialog" aria-modal="true" aria-labelledby="age-title">
     <div class="age-box">
-      <div class="eyebrow">Age verification</div>
+      <div class="eyebrow">Age confirmation</div>
       <h2 id="age-title">Are you 18 or older?</h2>
       <p>
-        You must be at least 18 years old to enter this website.
+        This website is intended for adults aged 18 and older.
+        By continuing, you confirm that you meet the legal age requirement.
         Please drink responsibly.
       </p>
       <div class="age-buttons">
-        <button class="button primary" id="age-yes">Yes, I am 18+</button>
-        <button class="button secondary" id="age-no">No, exit</button>
+        <button type="button" class="button primary" id="age-yes">
+          Yes, I am 18+
+        </button>
+        <button type="button" class="button secondary" id="age-no">
+          No, exit
+        </button>
       </div>
-      <p class="muted">This confirmation screen is a basic deterrent, not formal age verification.</p>
+      <p class="muted">
+        This screen is a basic deterrent, not formal age verification.
+      </p>
     </div>
   </div>
 
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
   <script>
+    "use strict";
+
     /*
-      STORE SETUP:
-      Replace these sample entries with verified products.
-      Set price to a number in rand only after confirming the price.
-      Add a real image path such as images/product-name.jpg.
-      Keep active false until the item is ready to sell.
+      MBOUYA LIQUOR STORE CONFIGURATION
+
+      Replace the placeholder entries with verified products.
+
+      Example of a real catalogue entry:
+      {
+        id: 9,
+        name: "Verified product name",
+        category: "Beer",
+        description: "Verified pack size",
+        price: 50,
+        image: "images/verified-product.jpg",
+        active: true
+      }
+
+      Do not activate a product until its actual price, image,
+      availability and other necessary information are confirmed.
     */
+
     const STORE = {
       name: "Mbouya Liquor Store",
       whatsapp: "27632046153"
@@ -453,41 +860,43 @@
 
     const products = [
       { id: 1, name: "Product placeholder 1", category: "Beer",
-        price: null, image: "", active: false },
-      { id: 2, name: "Product placeholder 2", category: "Cider",
-        price: null, image: "", active: false },
-      { id: 3, name: "Product placeholder 3", category: "Wine",
-        price: null, image: "", active: false },
-      { id: 4, name: "Product placeholder 4", category: "Spirits",
-        price: null, image: "", active: false },
-      { id: 5, name: "Product placeholder 5", category: "Other",
-        price: null, image: "", active: false },
-      { id: 6, name: "Product placeholder 6", category: "Beer",
-        price: null, image: "", active: false },
-      { id: 7, name: "Product placeholder 7", category: "Cider",
-        price: null, image: "", active: false },
-      { id: 8, name: "Product placeholder 8", category: "Wine",
-        price: null, image: "", active: false }
+        description: "Product details to be added.", price: null, image: "", active: false },
+
+      { id: 2, name: "Product placeholder 2", category: "Beer",
+        description: "Product details to be added.", price: null, image: "", active: false },
+
+      { id: 3, name: "Product placeholder 3", category: "Cider",
+        description: "Product details to be added.", price: null, image: "", active: false },
+
+      { id: 4, name: "Product placeholder 4", category: "Cider",
+        description: "Product details to be added.", price: null, image: "", active: false },
+
+      { id: 5, name: "Product placeholder 5", category: "Wine",
+        description: "Product details to be added.", price: null, image: "", active: false },
+
+      { id: 6, name: "Product placeholder 6", category: "Wine",
+        description: "Product details to be added.", price: null, image: "", active: false },
+
+      { id: 7, name: "Product placeholder 7", category: "Spirits",
+        description: "Product details to be added.", price: null, image: "", active: false },
+
+      { id: 8, name: "Product placeholder 8", category: "Other",
+        description: "Product details to be added.", price: null, image: "", active: false }
     ];
 
     let selectedCategory = "All";
-    const basket = {};
+    const basket = Object.create(null);
+    let toastTimer = null;
 
-    // The same daily sticker is assigned to each product for the entire day.
-    // These are labels, not discounts or claims about popularity.
     const stickers = [
-      "TODAY'S PICK",
       "MBOUYA PICK",
-      "GOOD-TIME PICK",
-      "FEATURED PICK"
+      "FEATURED PICK",
+      "TODAY'S PICK",
+      "STORE SELECTION"
     ];
 
-    function dailySticker(productId) {
-      const now = new Date();
-      const dayKey = now.getFullYear() * 10000
-        + (now.getMonth() + 1) * 100 + now.getDate();
-      const seed = Math.abs(Math.imul(productId, 31) + dayKey);
-      return stickers[seed % stickers.length];
+    function byId(id) {
+      return document.getElementById(id);
     }
 
     function formatPrice(price) {
@@ -497,43 +906,123 @@
       }).format(price);
     }
 
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function isConfigured(product) {
+      return product.active === true &&
+        Number.isFinite(product.price) &&
+        product.price >= 0;
+    }
+
+    function dailySticker(productId) {
+      const now = new Date();
+      const dateKey = now.getFullYear() * 10000 +
+        (now.getMonth() + 1) * 100 + now.getDate();
+
+      const seed = Math.abs(Math.imul(productId, 31) + dateKey);
+      return stickers[seed % stickers.length];
+    }
+
+    function showToast(message) {
+      const toast = byId("toast");
+      toast.textContent = message;
+      toast.hidden = false;
+
+      if (toastTimer !== null) {
+        clearTimeout(toastTimer);
+      }
+
+      toastTimer = setTimeout(() => {
+        toast.hidden = true;
+        toastTimer = null;
+      }, 4000);
+    }
+
+    function setCartMessage(message) {
+      byId("cart-message").textContent = message;
+    }
+
     function renderProducts() {
-      const query = document.getElementById("search").value.toLowerCase();
-      const sort = document.getElementById("sort").value;
-      let list = products.filter(p =>
-        (selectedCategory === "All" || p.category === selectedCategory) &&
-        p.name.toLowerCase().includes(query)
-      );
+      const query = byId("search").value.trim().toLowerCase();
+      const sort = byId("sort").value;
 
-      if (sort === "az") list.sort((a, b) => a.name.localeCompare(b.name));
+      let list = products.filter(product => {
+        const matchesCategory =
+          selectedCategory === "All" ||
+          product.category === selectedCategory;
 
-      const container = document.getElementById("products");
+        const searchable =
+          `${product.name} ${product.category} ${product.description}`.toLowerCase();
 
-      if (!list.length) {
-        container.innerHTML = '<div class="empty">No matching products. Try another search.</div>';
+        return matchesCategory && searchable.includes(query);
+      });
+
+      if (sort === "az") {
+        list.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sort === "za") {
+        list.sort((a, b) => b.name.localeCompare(a.name));
+      }
+
+      byId("result-count").textContent =
+        `${list.length} catalogue ${list.length === 1 ? "entry" : "entries"}`;
+
+      if (list.length === 0) {
+        byId("products").innerHTML = `
+          <div class="empty">
+            <h3>No matching products</h3>
+            <p>Try a different search or choose another category.</p>
+            <button type="button" class="button primary" id="reset-search">
+              Show all products
+            </button>
+          </div>
+        `;
         return;
       }
 
-      container.innerHTML = list.map(p => {
-        const picture = p.image
-          ? `<img src="${p.image}" alt="${p.name}" loading="lazy">`
-          : `<span>PRODUCT PHOTO<br>TO BE ADDED</span>`;
+      byId("products").innerHTML = list.map(product => {
+        const name = escapeHTML(product.name);
+        const category = escapeHTML(product.category);
+        const description = escapeHTML(product.description);
+        const configured = isConfigured(product);
 
-        const available = p.active && Number.isFinite(p.price) && p.price >= 0;
+        const imageMarkup = product.image
+          ? `<img src="${escapeHTML(product.image)}"
+                  alt="${name}" loading="lazy">`
+          : `<span>PRODUCT PHOTO<br>TO BE ADDED</span>`;
 
         return `
           <article class="product">
             <div class="product-image">
-              <span class="sticker">${dailySticker(p.id)}</span>
-              ${picture}
+              <span class="sticker">${dailySticker(product.id)}</span>
+              ${imageMarkup}
             </div>
+
             <div class="product-body">
-              <div class="product-category">${p.category}</div>
-              <h3>${p.name}</h3>
-              <div class="price">${available ? formatPrice(p.price) : "Price to be confirmed"}</div>
-              <p class="pending">${available ? "Price entered · confirm stock" : "PLACEHOLDER — NOT FOR SALE"}</p>
-              <button class="button primary" data-add="${p.id}" ${available ? "" : "disabled"}>
-                ${available ? "Add to basket" : "Awaiting product details"}
+              <div class="product-category">${category}</div>
+              <h3>${name}</h3>
+              <p class="product-description">${description}</p>
+
+              <div class="price">
+                ${configured ? formatPrice(product.price) : "Price to be confirmed"}
+              </div>
+
+              <p class="pending">
+                ${configured
+                  ? "Price entered · confirm stock"
+                  : "PLACEHOLDER · NOT AVAILABLE TO ORDER"}
+              </p>
+
+              <button type="button" class="button ${configured ? "primary" : "secondary"}"
+                      data-product-action="${product.id}">
+                ${configured ? "Add to basket" : "View product status"}
               </button>
             </div>
           </article>
@@ -544,97 +1033,258 @@
     function renderBasket() {
       const items = Object.values(basket);
       const count = items.reduce((sum, item) => sum + item.qty, 0);
-      document.getElementById("cart-count").textContent = count;
 
-      document.getElementById("cart-items").innerHTML = items.length
-        ? items.map(item => `
-          <div class="cart-row">
-            <div>${item.name} × ${item.qty}<br>
-              <small>${formatPrice(item.price)} each</small>
-            </div>
-            <div>
-              ${formatPrice(item.price * item.qty)}
-              <button class="button secondary" data-remove="${item.id}" aria-label="Remove ${item.name}">Remove</button>
+      byId("cart-count").textContent = count;
+
+      if (items.length === 0) {
+        byId("cart-items").innerHTML = `
+          <div class="empty">
+            <p>Your basket is empty.</p>
+            <button type="button" class="button primary" id="empty-browse">
+              Browse catalogue
+            </button>
+          </div>
+        `;
+
+        byId("cart-total").textContent = "Subtotal: R0.00";
+        setCartMessage("Add a configured product to start an order.");
+        return;
+      }
+
+      byId("cart-items").innerHTML = items.map(item => `
+        <div class="cart-row">
+          <div>
+            <div class="cart-item-name">${escapeHTML(item.name)}</div>
+            <div class="cart-item-meta">
+              ${formatPrice(item.price)} each · ${formatPrice(item.price * item.qty)} total
             </div>
           </div>
-        `).join("")
-        : '<p class="muted">Your basket is empty.</p>';
 
-      const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
-      document.getElementById("cart-total").textContent =
-        items.length ? "Subtotal: " + formatPrice(total) : "Subtotal: Not available yet";
+          <div class="cart-actions">
+            <button type="button" class="small-button"
+                    data-quantity-action="decrease" data-item-id="${item.id}"
+                    aria-label="Decrease quantity of ${escapeHTML(item.name)}">−</button>
 
-      const ready = items.length > 0;
-      document.getElementById("checkout").disabled = !ready;
-      document.getElementById("cart-message").textContent = ready
-        ? "Delivery fees and final availability must be confirmed with the store."
-        : "Ordering will be available once you add a configured product.";
+            <strong aria-label="Quantity">${item.qty}</strong>
+
+            <button type="button" class="small-button"
+                    data-quantity-action="increase" data-item-id="${item.id}"
+                    aria-label="Increase quantity of ${escapeHTML(item.name)}">+</button>
+
+            <button type="button" class="small-button remove-button"
+                    data-quantity-action="remove" data-item-id="${item.id}">
+              Remove
+            </button>
+          </div>
+        </div>
+      `).join("");
+
+      const total = items.reduce(
+        (sum, item) => sum + item.price * item.qty, 0
+      );
+
+      byId("cart-total").textContent = `Subtotal: ${formatPrice(total)}`;
+
+      setCartMessage(
+        "Basket updated. Final availability, delivery fees and total must be confirmed by the store."
+      );
     }
 
-    document.getElementById("products").addEventListener("click", event => {
-      const id = Number(event.target.dataset.add);
-      if (!id) return;
+    function addProduct(productId) {
+      const product = products.find(item => item.id === productId);
+      if (!product) {
+        showToast("This catalogue entry could not be found.");
+        return;
+      }
 
-      const p = products.find(item => item.id === id);
-      if (!p || !p.active || !Number.isFinite(p.price) || p.price < 0) return;
+      if (!isConfigured(product)) {
+        const message =
+          `${product.name} is a placeholder. Add its verified price, photo and availability before ordering.`;
 
-      if (!basket[id]) basket[id] = {
-        id: p.id, name: p.name, price: p.price, qty: 0
-      };
-      basket[id].qty++;
+        setCartMessage(message);
+        showToast("This placeholder cannot be ordered yet.");
+
+        byId("cart").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      if (!basket[productId]) {
+        basket[productId] = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          qty: 0
+        };
+      }
+
+      basket[productId].qty += 1;
+
       renderBasket();
-    });
+      showToast(`${product.name} added to your basket.`);
+    }
 
-    document.getElementById("cart-items").addEventListener("click", event => {
-      const id = Number(event.target.dataset.remove);
-      if (!id || !basket[id]) return;
-      delete basket[id];
+    function changeQuantity(productId, action) {
+      const item = basket[productId];
+      if (!item) return;
+
+      if (action === "increase") {
+        item.qty += 1;
+      } else if (action === "decrease") {
+        item.qty -= 1;
+      } else if (action === "remove") {
+        delete basket[productId];
+      }
+
+      if (basket[productId] && basket[productId].qty <= 0) {
+        delete basket[productId];
+      }
+
       renderBasket();
-    });
+    }
 
-    document.getElementById("search").addEventListener("input", renderProducts);
-    document.getElementById("sort").addEventListener("change", renderProducts);
+    function openWhatsApp(message) {
+      const url = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`;
+      const opened = window.open(url, "_blank", "noopener,noreferrer");
 
-    document.getElementById("categories").addEventListener("click", event => {
-      const button = event.target.closest("[data-category]");
-      if (!button) return;
-      selectedCategory = button.dataset.category;
+      if (!opened) {
+        showToast("Your browser blocked the new tab. Allow pop-ups or open WhatsApp using the contact link.");
+      }
+    }
 
-      document.querySelectorAll(".category").forEach(item =>
-        item.classList.toggle("active", item === button)
-      );
-      renderProducts();
-    });
-
-    document.getElementById("checkout").addEventListener("click", () => {
+    function checkout() {
       const items = Object.values(basket);
-      if (!items.length) return;
 
-      const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+      if (items.length === 0) {
+        setCartMessage(
+          "Your basket is empty. Browse the catalogue and add a configured product first."
+        );
+        showToast("Your basket is empty.");
+        byId("catalogue").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      const total = items.reduce(
+        (sum, item) => sum + item.price * item.qty, 0
+      );
+
       const message = [
         `Hello ${STORE.name}, I would like to enquire about this order:`,
         "",
-        ...items.map(item => `${item.name} x ${item.qty} — ${formatPrice(item.price * item.qty)}`),
+        ...items.map(item =>
+          `${item.name} x ${item.qty} — ${formatPrice(item.price * item.qty)}`
+        ),
         "",
         `Subtotal: ${formatPrice(total)}`,
-        "Please confirm stock, collection or delivery availability, fees and final total."
+        "",
+        "Please confirm product availability, collection or delivery options, delivery fees and final total."
       ].join("\n");
 
-      window.open(
-        `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`,
-        "_blank",
-        "noopener"
+      openWhatsApp(message);
+    }
+
+    // Catalogue buttons: configured items can be added;
+    // placeholders show a useful explanation instead.
+    byId("products").addEventListener("click", event => {
+      const resetButton = event.target.closest("#reset-search");
+
+      if (resetButton) {
+        byId("search").value = "";
+        selectedCategory = "All";
+
+        document.querySelectorAll(".category").forEach(button => {
+          button.classList.toggle(
+            "active", button.dataset.category === "All"
+          );
+        });
+
+        renderProducts();
+        return;
+      }
+
+      const button = event.target.closest("[data-product-action]");
+      if (!button) return;
+
+      addProduct(Number(button.dataset.productAction));
+    });
+
+    byId("categories").addEventListener("click", event => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+
+      selectedCategory = button.dataset.category;
+
+      document.querySelectorAll(".category").forEach(categoryButton => {
+        categoryButton.classList.toggle(
+          "active", categoryButton === button
+        );
+      });
+
+      renderProducts();
+    });
+
+    byId("search").addEventListener("input", renderProducts);
+    byId("sort").addEventListener("change", renderProducts);
+
+    byId("cart-items").addEventListener("click", event => {
+      const browseButton = event.target.closest("#empty-browse");
+
+      if (browseButton) {
+        byId("catalogue").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      const button = event.target.closest("[data-quantity-action]");
+      if (!button) return;
+
+      changeQuantity(
+        Number(button.dataset.itemId),
+        button.dataset.quantityAction
       );
     });
 
-    document.getElementById("age-yes").addEventListener("click", () => {
-      document.getElementById("age-overlay").hidden = true;
+    byId("checkout").addEventListener("click", checkout);
+
+    byId("clear-cart").addEventListener("click", () => {
+      for (const key of Object.keys(basket)) {
+        delete basket[key];
+      }
+
+      renderBasket();
+      showToast("Your basket has been cleared.");
     });
 
-    document.getElementById("age-no").addEventListener("click", () => {
-      document.body.innerHTML =
-        '<main style="text-align:center;padding:60px 20px"><h1>Access unavailable</h1><p>This website is for adults aged 18 and older.</p></main>';
+    // Age confirmation.
+    byId("age-yes").addEventListener("click", () => {
+      byId("age-overlay").hidden = true;
+      showToast("Welcome to Mbouya Liquor Store.");
     });
+
+    byId("age-no").addEventListener("click", () => {
+      document.body.innerHTML = `
+        <main class="exit-screen">
+          <div class="panel">
+            <h1>Access unavailable</h1>
+            <p>This website is intended for adults aged 18 and older.</p>
+            <p>Please drink responsibly.</p>
+          </div>
+        </main>
+      `;
+    });
+
+    // Informational buttons.
+    byId("sponsor-info").addEventListener("click", () => {
+      openWhatsApp(
+        "Hello Mbouya Liquor Store, I would like to enquire about sponsorship opportunities and the SPHOLA sponsor section."
+      );
+    });
+
+    byId("hours-info").addEventListener("click", () => {
+      openWhatsApp(
+        "Hello Mbouya Liquor Store, could you please confirm your opening hours?"
+      );
+    });
+
+    byId("year").textContent = new Date().getFullYear();
 
     renderProducts();
     renderBasket();
