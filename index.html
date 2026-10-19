@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#155eef">
-  <meta name="description" content="Mbouya Liquor Store in Cape Town. Explore our catalogue and contact us to enquire about products and availability.">
+  <meta name="description" content="Mbouya Liquor Store in Cape Town. Open 10:00 to 20:00. Browse our catalogue and contact us about products and availability.">
   <title>Mbouya Liquor Store | Cape Town</title>
 
   <style>
@@ -598,7 +597,7 @@
 
 <body>
   <div class="notice">
-    ADULTS 18+ ONLY &nbsp; | &nbsp; PLEASE DRINK RESPONSIBLY
+    ADULTS 18+ ONLY &nbsp; | &nbsp; OPEN 10:00 – 20:00 &nbsp; | &nbsp; PLEASE DRINK RESPONSIBLY
   </div>
 
   <header>
@@ -625,19 +624,19 @@
   <main id="home">
     <section class="hero">
       <div class="hero-content">
-        <div class="eyebrow">Cape Town · Your local store</div>
+        <div class="eyebrow">Cape Town · Open 10:00 – 20:00</div>
         <h1>YOUR STORE.<br><span class="blue-text">YOUR SELECTION.</span></h1>
         <p>
           Welcome to Mbouya Liquor Store. Explore our online catalogue
-          and contact us to enquire about products, current prices,
-          stock availability and collection or delivery options.
+          and contact us to confirm current prices, stock availability
+          and collection or delivery options.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#catalogue">Explore catalogue →</a>
           <a class="button secondary" href="#contact">Contact our store</a>
         </div>
         <div class="hero-note">
-          Product prices and availability will be confirmed by the store.
+          Prices and availability are confirmed by the store when you order.
         </div>
       </div>
     </section>
@@ -647,15 +646,14 @@
         <div>
           <div class="eyebrow">Find your selection</div>
           <h2>Our catalogue</h2>
-          <p>Real products, photos and prices will be added soon.</p>
+          <p>Browse by category and add what you need to your basket.</p>
         </div>
       </div>
 
       <div class="catalogue-status">
-        <strong>Catalogue setup in progress:</strong>
-        All products below are sample placeholders. They are not confirmed
-        inventory and cannot be purchased until genuine product details
-        and prices have been entered.
+        <strong>Please note:</strong>
+        Prices shown are guide prices and may change. Stock, final price and
+        delivery details are confirmed by the store before your order is complete.
       </div>
 
       <div class="controls">
@@ -667,6 +665,8 @@
           <option value="featured">Featured order</option>
           <option value="az">Name: A–Z</option>
           <option value="za">Name: Z–A</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
         </select>
       </div>
 
@@ -695,8 +695,8 @@
       </div>
 
       <p class="muted">
-        Add configured products here. Final stock, delivery fees and order
-        details must be confirmed with the store.
+        Add products here, then send your order to the store on WhatsApp.
+        Final stock, delivery fees and order details are confirmed by the store.
       </p>
 
       <div id="cart-items" aria-live="polite"></div>
@@ -711,8 +711,7 @@
       </div>
 
       <div class="message" id="cart-message" role="status">
-        Your basket is empty. Product ordering will be available when
-        verified catalogue entries are configured.
+        Your basket is empty. Add a product to start your order.
       </div>
     </section>
 
@@ -728,7 +727,7 @@
         <article class="info-card">
           <div class="info-icon" aria-hidden="true">⌕</div>
           <h3>Easy browsing</h3>
-          <p>Search the catalogue and browse categories to find products once our verified inventory is uploaded.</p>
+          <p>Search the catalogue and browse categories to find what you are looking for.</p>
         </article>
 
         <article class="info-card">
@@ -785,10 +784,10 @@
 
         <article class="info-card">
           <div class="info-icon" aria-hidden="true">◷</div>
-          <h3>Store information</h3>
-          <p>Opening hours, stock availability and delivery conditions have not yet been added.</p>
+          <h3>Opening hours</h3>
+          <p><strong>10:00 – 20:00</strong><br>Stock availability and delivery conditions are confirmed by the store.</p>
           <button type="button" class="button secondary" id="hours-info">
-            Ask about opening hours
+            Confirm hours on WhatsApp
           </button>
         </article>
       </div>
@@ -798,6 +797,7 @@
   <footer>
     <strong>MBOUYA LIQUOR STORE</strong><br>
     3 Riebeek St, Cape Town City Centre, Cape Town, 8000<br>
+    Open 10:00 – 20:00<br>
     <a href="https://wa.me/27632046153">WhatsApp: +27 63 204 6153</a><br>
     Adults 18+ only. Please drink responsibly.<br>
     Product prices, stock, promotions and fulfilment must be confirmed by the store.
@@ -836,52 +836,60 @@
     /*
       MBOUYA LIQUOR STORE CONFIGURATION
 
-      Replace the placeholder entries with verified products.
-
-      Example of a real catalogue entry:
-      {
-        id: 9,
-        name: "Verified product name",
-        category: "Beer",
-        description: "Verified pack size",
-        price: 50,
-        image: "images/verified-product.jpg",
-        active: true
-      }
-
-      Do not activate a product until its actual price, image,
-      availability and other necessary information are confirmed.
+      To change a price, edit the "price" number of the product below
+      (in rand, no "R" sign). Set active: false to hide ordering for a product.
+      To add a photo, put the file in an "images" folder and set
+      image: "images/your-photo.jpg".
     */
 
     const STORE = {
       name: "Mbouya Liquor Store",
-      whatsapp: "27632046153"
+      whatsapp: "27632046153",
+      hours: "10:00 – 20:00"
     };
 
     const products = [
-      { id: 1, name: "Product placeholder 1", category: "Beer",
-        description: "Product details to be added.", price: null, image: "", active: false },
+      // Beer
+      { id: 1, name: "Castle Lager 340ml", category: "Beer",
+        description: "6 pack bottles", price: 95, image: "", active: true },
+      { id: 2, name: "Carling Black Label 440ml", category: "Beer",
+        description: "6 pack cans", price: 110, image: "", active: true },
+      { id: 3, name: "Heineken 330ml", category: "Beer",
+        description: "6 pack bottles", price: 135, image: "", active: true },
+      { id: 4, name: "Corona Extra 355ml", category: "Beer",
+        description: "6 pack bottles", price: 165, image: "", active: true },
 
-      { id: 2, name: "Product placeholder 2", category: "Beer",
-        description: "Product details to be added.", price: null, image: "", active: false },
+      // Cider
+      { id: 5, name: "Savanna Dry 330ml", category: "Cider",
+        description: "6 pack bottles", price: 120, image: "", active: true },
+      { id: 6, name: "Hunters Gold 330ml", category: "Cider",
+        description: "6 pack bottles", price: 115, image: "", active: true },
+      { id: 7, name: "Brutal Fruit Strawberry 275ml", category: "Cider",
+        description: "6 pack bottles", price: 110, image: "", active: true },
 
-      { id: 3, name: "Product placeholder 3", category: "Cider",
-        description: "Product details to be added.", price: null, image: "", active: false },
+      // Wine
+      { id: 8, name: "Four Cousins Sweet Red 750ml", category: "Wine",
+        description: "Single bottle", price: 75, image: "", active: true },
+      { id: 9, name: "Drostdy-Hof Claret Select 750ml", category: "Wine",
+        description: "Single bottle", price: 60, image: "", active: true },
+      { id: 10, name: "Nederburg Cabernet Sauvignon 750ml", category: "Wine",
+        description: "Single bottle", price: 95, image: "", active: true },
 
-      { id: 4, name: "Product placeholder 4", category: "Cider",
-        description: "Product details to be added.", price: null, image: "", active: false },
+      // Spirits
+      { id: 11, name: "Smirnoff 1818 Vodka 750ml", category: "Spirits",
+        description: "Single bottle", price: 175, image: "", active: true },
+      { id: 12, name: "Klipdrift Premium Brandy 750ml", category: "Spirits",
+        description: "Single bottle", price: 200, image: "", active: true },
+      { id: 13, name: "Johnnie Walker Red Label 750ml", category: "Spirits",
+        description: "Single bottle", price: 320, image: "", active: true },
+      { id: 14, name: "Jameson Irish Whiskey 750ml", category: "Spirits",
+        description: "Single bottle", price: 380, image: "", active: true },
 
-      { id: 5, name: "Product placeholder 5", category: "Wine",
-        description: "Product details to be added.", price: null, image: "", active: false },
-
-      { id: 6, name: "Product placeholder 6", category: "Wine",
-        description: "Product details to be added.", price: null, image: "", active: false },
-
-      { id: 7, name: "Product placeholder 7", category: "Spirits",
-        description: "Product details to be added.", price: null, image: "", active: false },
-
-      { id: 8, name: "Product placeholder 8", category: "Other",
-        description: "Product details to be added.", price: null, image: "", active: false }
+      // Other
+      { id: 15, name: "Coca-Cola 2L", category: "Other",
+        description: "Cold drink", price: 32, image: "", active: true },
+      { id: 16, name: "Ice bag 2kg", category: "Other",
+        description: "Packaged ice", price: 35, image: "", active: true }
     ];
 
     let selectedCategory = "All";
@@ -969,10 +977,14 @@
         list.sort((a, b) => a.name.localeCompare(b.name));
       } else if (sort === "za") {
         list.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (sort === "low") {
+        list.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+      } else if (sort === "high") {
+        list.sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
       }
 
       byId("result-count").textContent =
-        `${list.length} catalogue ${list.length === 1 ? "entry" : "entries"}`;
+        `${list.length} ${list.length === 1 ? "product" : "products"}`;
 
       if (list.length === 0) {
         byId("products").innerHTML = `
@@ -996,7 +1008,7 @@
         const imageMarkup = product.image
           ? `<img src="${escapeHTML(product.image)}"
                   alt="${name}" loading="lazy">`
-          : `<span>PRODUCT PHOTO<br>TO BE ADDED</span>`;
+          : `<span>PRODUCT PHOTO<br>COMING SOON</span>`;
 
         return `
           <article class="product">
@@ -1016,8 +1028,8 @@
 
               <p class="pending">
                 ${configured
-                  ? "Price entered · confirm stock"
-                  : "PLACEHOLDER · NOT AVAILABLE TO ORDER"}
+                  ? "Guide price · stock confirmed by store"
+                  : "NOT AVAILABLE TO ORDER ONLINE"}
               </p>
 
               <button type="button" class="button ${configured ? "primary" : "secondary"}"
@@ -1047,7 +1059,7 @@
         `;
 
         byId("cart-total").textContent = "Subtotal: R0.00";
-        setCartMessage("Add a configured product to start an order.");
+        setCartMessage("Your basket is empty. Add a product to start your order.");
         return;
       }
 
@@ -1086,7 +1098,7 @@
       byId("cart-total").textContent = `Subtotal: ${formatPrice(total)}`;
 
       setCartMessage(
-        "Basket updated. Final availability, delivery fees and total must be confirmed by the store."
+        "Basket updated. Final availability, delivery fees and total are confirmed by the store."
       );
     }
 
@@ -1098,12 +1110,10 @@
       }
 
       if (!isConfigured(product)) {
-        const message =
-          `${product.name} is a placeholder. Add its verified price, photo and availability before ordering.`;
-
-        setCartMessage(message);
-        showToast("This placeholder cannot be ordered yet.");
-
+        setCartMessage(
+          `${product.name} cannot be ordered online right now. Please contact the store.`
+        );
+        showToast("This product cannot be ordered online yet.");
         byId("cart").scrollIntoView({ behavior: "smooth" });
         return;
       }
@@ -1156,7 +1166,7 @@
 
       if (items.length === 0) {
         setCartMessage(
-          "Your basket is empty. Browse the catalogue and add a configured product first."
+          "Your basket is empty. Browse the catalogue and add a product first."
         );
         showToast("Your basket is empty.");
         byId("catalogue").scrollIntoView({ behavior: "smooth" });
@@ -1182,8 +1192,6 @@
       openWhatsApp(message);
     }
 
-    // Catalogue buttons: configured items can be added;
-    // placeholders show a useful explanation instead.
     byId("products").addEventListener("click", event => {
       const resetButton = event.target.closest("#reset-search");
 
@@ -1253,7 +1261,6 @@
       showToast("Your basket has been cleared.");
     });
 
-    // Age confirmation.
     byId("age-yes").addEventListener("click", () => {
       byId("age-overlay").hidden = true;
       showToast("Welcome to Mbouya Liquor Store.");
@@ -1271,7 +1278,6 @@
       `;
     });
 
-    // Informational buttons.
     byId("sponsor-info").addEventListener("click", () => {
       openWhatsApp(
         "Hello Mbouya Liquor Store, I would like to enquire about sponsorship opportunities and the SPHOLA sponsor section."
@@ -1280,7 +1286,7 @@
 
     byId("hours-info").addEventListener("click", () => {
       openWhatsApp(
-        "Hello Mbouya Liquor Store, could you please confirm your opening hours?"
+        `Hello Mbouya Liquor Store, can you confirm that you are open ${STORE.hours}?`
       );
     });
 
