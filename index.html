@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Mbouya Liquor Store — Cape Town. Browse our catalogue and enquire via WhatsApp.">
+  <title>Mbouya Liquor Store | Cape Town</title>
+
+  <style>
+    :root {
+      --black: #111111;
+      --panel: #1d1d1d;
+      --orange: #ff6a00;
+      --yellow: #ffc400;
+      --white: #ffffff;
+      --muted: #b8b8b8;
+      --line: #363636;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #101010;
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+
+    .notice {
+      background: var(--orange);
+      color: #111;
+      text-align: center;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    header {
+      background: #161616;
+      border-bottom: 1px solid var(--line);
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .brand span { color: var(--orange); }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .primary { background: var(--orange); color: #111; }
+    .secondary { background: #292929; color: white; border: 1px solid #444; }
+
+    main { max-width: 1200px; margin: auto; padding: 24px 5%; }
+
+    .hero {
+      min-height: 310px;
+      padding: clamp(25px, 6vw, 65px);
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(ellipse at 85% 30%, #763000 0, transparent 45%),
+        linear-gradient(120deg, #242424, #101010 75%);
+      border: 1px solid #39312a;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .hero-content { max-width: 620px; }
+
+    .eyebrow {
+      color: var(--yellow);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1;
+      margin: 15px 0;
+      letter-spacing: -2px;
+    }
+
+    h1 span { color: var(--orange); }
+
+    .hero p, .muted { color: var(--muted); line-height: 1.65; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 35px 0 18px;
+    }
+
+    h2 { margin: 0; font-size: 26px; }
+    .section-heading p { color: var(--muted); margin-bottom: 0; }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    input, select {
+      background: #202020;
+      border: 1px solid #414141;
+      color: white;
+      padding: 13px;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 18px 0 24px;
+    }
+
+    .category {
+      background: #252525;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 30px;
+      padding: 10px 15px;
+    }
+
+    .category.active {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #111;
+      font-weight: bold;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .product-image {
+      aspect-ratio: 4 / 3;
+      display: grid;
+      place-items: center;
+      padding: 15px;
+      background: linear-gradient(145deg, #292929, #171717);
+      color: #aaa;
+      text-align: center;
+      font-size: 13px;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .sticker {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--yellow);
+      color: #111;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .product-body { padding: 15px; }
+    .product h3 { margin: 0 0 8px; font-size: 16px; }
+    .product-category { color: var(--muted); font-size: 12px; }
+    .price { font-weight: bold; font-size: 18px; margin: 14px 0; }
+    .pending { color: var(--yellow); font-size: 12px; }
+
+    .product .button { width: 100%; text-align: center; }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+
+    .empty {
+      border: 1px dashed #555;
+      border-radius: 10px;
+      padding: 30px;
+      color: var(--muted);
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 35px;
+    }
+
+    .info-card, .sponsor {
+      background: #1b1b1b;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px;
+    }
+
+    .info-card h3 { margin-top: 0; }
+    .sponsor { margin-top: 20px; text-align: center; }
+    .sponsor strong { color: var(--yellow); }
+
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+      padding: 28px 5%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .age-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      background: rgba(0,0,0,.94);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .age-box {
+      max-width: 430px;
+      background: #1d1d1d;
+      border: 1px solid #444;
+      border-top: 4px solid var(--orange);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .age-box h2 { margin-bottom: 12px; }
+    .age-box p { color: var(--muted); line-height: 1.6; }
+    .age-buttons { display: flex; gap: 10px; margin-top: 20px; }
+    .age-buttons button { flex: 1; }
+
+    .cart-panel {
+      margin-top: 30px;
+      background: #1b1b1b;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px;
+    }
+
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-total { font-size: 20px; font-weight: bold; margin: 18px 0; }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      header { padding: 16px 4%; }
+      main { padding: 18px 4%; }
+      .brand { font-size: 21px; }
+      .controls { grid-template-columns: 1fr; }
+      .grid { gap: 10px; }
+      .product-body { padding: 11px; }
+      .product h3 { font-size: 14px; }
+      .product .button { padding: 10px 5px; font-size: 12px; }
+      .age-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="notice">
+    18+ ONLY · PLEASE DRINK RESPONSIBLY · SOUTH AFRICA
+  </div>
+
+  <header>
+    <div class="brand">MBOUYA <span>LIQUOR STORE</span></div>
+    <div class="header-actions">
+      <a class="button secondary" href="#catalogue">Browse catalogue</a>
+      <a class="button primary" href="#cart">My basket (<span id="cart-count">0</span>)</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Cape Town · Your local store</div>
+        <h1>YOUR STORE.<br><span>YOUR SELECTION.</span></h1>
+        <p>
+          Welcome to Mbouya Liquor Store. Explore our catalogue
+          and contact us to confirm product availability, prices,
+          collection and delivery options.
+        </p>
+        <a class="button primary" href="#catalogue">Explore catalogue →</a>
+      </div>
+    </section>
+
+    <section id="catalogue">
+      <div class="section-heading">
+        <div>
+          <h2>Our catalogue</h2>
+          <p>Product and pricing information will be updated soon.</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search products..." aria-label="Search products">
+        <select id="sort" aria-label="Sort products">
+          <option value="default">Featured products</option>
+          <option value="az">Name: A–Z</option>
+        </select>
+      </div>
+
+      <div class="categories" id="categories">
+        <button class="category active" data-category="All">All products</button>
+        <button class="category" data-category="Beer">Beer</button>
+        <button class="category" data-category="Cider">Cider</button>
+        <button class="category" data-category="Wine">Wine</button>
+        <button class="category" data-category="Spirits">Spirits</button>
+        <button class="category" data-category="Other">Other</button>
+      </div>
+
+      <div class="grid" id="products"></div>
+
+      <p class="muted">
+        All products shown below are demonstration placeholders, not confirmed
+        inventory. Prices and availability must be confirmed by the store.
+      </p>
+    </section>
+
+    <section id="cart" class="cart-panel">
+      <h2>Your basket</h2>
+      <p class="muted">Add products after verified prices and availability have been entered.</p>
+      <div id="cart-items"></div>
+      <div class="cart-total" id="cart-total">Subtotal: Not available yet</div>
+      <button class="button primary" id="checkout" disabled>
+        Continue to WhatsApp
+      </button>
+      <p class="muted" id="cart-message">
+        Online ordering will activate once the catalogue is configured.
+      </p>
+    </section>
+
+    <section class="info-grid">
+      <div class="info-card">
+        <h3>📍 Visit us</h3>
+        <p>3 Riebeek St, Cape Town City Centre, Cape Town, 8000.</p>
+        <p class="muted">Please confirm opening hours before visiting.</p>
+      </div>
+      <div class="info-card">
+        <h3>🛍 Collection & delivery</h3>
+        <p>Ask us about collection and delivery availability.</p>
+        <p class="muted">Delivery areas, fees and minimum orders are not yet configured.</p>
+      </div>
+      <div class="info-card">
+        <h3>💬 WhatsApp enquiries</h3>
+        <p>Contact the store to ask about products and availability.</p>
+        <a class="button secondary" href="https://wa.me/27632046153"
+           target="_blank" rel="noopener">Message the store</a>
+      </div>
+    </section>
+
+    <section class="sponsor">
+      <strong>SPHOLA · SPONSORSHIP SPACE</strong>
+      <p class="muted">Sponsor logo, approved artwork and campaign details to be added.</p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>MBOUYA LIQUOR STORE</strong><br>
+    3 Riebeek St, Cape Town City Centre, Cape Town, 8000<br>
+    Adults 18+ only. Please drink responsibly.<br>
+    Product availability, prices and promotions must be confirmed by the store.
+  </footer>
+
+  <div class="age-overlay" id="age-overlay" role="dialog"
+       aria-modal="true" aria-labelledby="age-title">
+    <div class="age-box">
+      <div class="eyebrow">Age verification</div>
+      <h2 id="age-title">Are you 18 or older?</h2>
+      <p>
+        You must be at least 18 years old to enter this website.
+        Please drink responsibly.
+      </p>
+      <div class="age-buttons">
+        <button class="button primary" id="age-yes">Yes, I am 18+</button>
+        <button class="button secondary" id="age-no">No, exit</button>
+      </div>
+      <p class="muted">This confirmation screen is a basic deterrent, not formal age verification.</p>
+    </div>
+  </div>
+
+  <script>
+    /*
+      STORE SETUP:
+      Replace these sample entries with verified products.
+      Set price to a number in rand only after confirming the price.
+      Add a real image path such as images/product-name.jpg.
+      Keep active false until the item is ready to sell.
+    */
+    const STORE = {
+      name: "Mbouya Liquor Store",
+      whatsapp: "27632046153"
+    };
+
+    const products = [
+      { id: 1, name: "Product placeholder 1", category: "Beer",
+        price: null, image: "", active: false },
+      { id: 2, name: "Product placeholder 2", category: "Cider",
+        price: null, image: "", active: false },
+      { id: 3, name: "Product placeholder 3", category: "Wine",
+        price: null, image: "", active: false },
+      { id: 4, name: "Product placeholder 4", category: "Spirits",
+        price: null, image: "", active: false },
+      { id: 5, name: "Product placeholder 5", category: "Other",
+        price: null, image: "", active: false },
+      { id: 6, name: "Product placeholder 6", category: "Beer",
+        price: null, image: "", active: false },
+      { id: 7, name: "Product placeholder 7", category: "Cider",
+        price: null, image: "", active: false },
+      { id: 8, name: "Product placeholder 8", category: "Wine",
+        price: null, image: "", active: false }
+    ];
+
+    let selectedCategory = "All";
+    const basket = {};
+
+    // The same daily sticker is assigned to each product for the entire day.
+    // These are labels, not discounts or claims about popularity.
+    const stickers = [
+      "TODAY'S PICK",
+      "MBOUYA PICK",
+      "GOOD-TIME PICK",
+      "FEATURED PICK"
+    ];
+
+    function dailySticker(productId) {
+      const now = new Date();
+      const dayKey = now.getFullYear() * 10000
+        + (now.getMonth() + 1) * 100 + now.getDate();
+      const seed = Math.abs(Math.imul(productId, 31) + dayKey);
+      return stickers[seed % stickers.length];
+    }
+
+    function formatPrice(price) {
+      return new Intl.NumberFormat("en-ZA", {
+        style: "currency",
+        currency: "ZAR"
+      }).format(price);
+    }
+
+    function renderProducts() {
+      const query = document.getElementById("search").value.toLowerCase();
+      const sort = document.getElementById("sort").value;
+      let list = products.filter(p =>
+        (selectedCategory === "All" || p.category === selectedCategory) &&
+        p.name.toLowerCase().includes(query)
+      );
+
+      if (sort === "az") list.sort((a, b) => a.name.localeCompare(b.name));
+
+      const container = document.getElementById("products");
+
+      if (!list.length) {
+        container.innerHTML = '<div class="empty">No matching products. Try another search.</div>';
+        return;
+      }
+
+      container.innerHTML = list.map(p => {
+        const picture = p.image
+          ? `<img src="${p.image}" alt="${p.name}" loading="lazy">`
+          : `<span>PRODUCT PHOTO<br>TO BE ADDED</span>`;
+
+        const available = p.active && Number.isFinite(p.price) && p.price >= 0;
+
+        return `
+          <article class="product">
+            <div class="product-image">
+              <span class="sticker">${dailySticker(p.id)}</span>
+              ${picture}
+            </div>
+            <div class="product-body">
+              <div class="product-category">${p.category}</div>
+              <h3>${p.name}</h3>
+              <div class="price">${available ? formatPrice(p.price) : "Price to be confirmed"}</div>
+              <p class="pending">${available ? "Price entered · confirm stock" : "PLACEHOLDER — NOT FOR SALE"}</p>
+              <button class="button primary" data-add="${p.id}" ${available ? "" : "disabled"}>
+                ${available ? "Add to basket" : "Awaiting product details"}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderBasket() {
+      const items = Object.values(basket);
+      const count = items.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cart-count").textContent = count;
+
+      document.getElementById("cart-items").innerHTML = items.length
+        ? items.map(item => `
+          <div class="cart-row">
+            <div>${item.name} × ${item.qty}<br>
+              <small>${formatPrice(item.price)} each</small>
+            </div>
+            <div>
+              ${formatPrice(item.price * item.qty)}
+              <button class="button secondary" data-remove="${item.id}" aria-label="Remove ${item.name}">Remove</button>
+            </div>
+          </div>
+        `).join("")
+        : '<p class="muted">Your basket is empty.</p>';
+
+      const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+      document.getElementById("cart-total").textContent =
+        items.length ? "Subtotal: " + formatPrice(total) : "Subtotal: Not available yet";
+
+      const ready = items.length > 0;
+      document.getElementById("checkout").disabled = !ready;
+      document.getElementById("cart-message").textContent = ready
+        ? "Delivery fees and final availability must be confirmed with the store."
+        : "Ordering will be available once you add a configured product.";
+    }
+
+    document.getElementById("products").addEventListener("click", event => {
+      const id = Number(event.target.dataset.add);
+      if (!id) return;
+
+      const p = products.find(item => item.id === id);
+      if (!p || !p.active || !Number.isFinite(p.price) || p.price < 0) return;
+
+      if (!basket[id]) basket[id] = {
+        id: p.id, name: p.name, price: p.price, qty: 0
+      };
+      basket[id].qty++;
+      renderBasket();
+    });
+
+    document.getElementById("cart-items").addEventListener("click", event => {
+      const id = Number(event.target.dataset.remove);
+      if (!id || !basket[id]) return;
+      delete basket[id];
+      renderBasket();
+    });
+
+    document.getElementById("search").addEventListener("input", renderProducts);
+    document.getElementById("sort").addEventListener("change", renderProducts);
+
+    document.getElementById("categories").addEventListener("click", event => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      selectedCategory = button.dataset.category;
+
+      document.querySelectorAll(".category").forEach(item =>
+        item.classList.toggle("active", item === button)
+      );
+      renderProducts();
+    });
+
+    document.getElementById("checkout").addEventListener("click", () => {
+      const items = Object.values(basket);
+      if (!items.length) return;
+
+      const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const message = [
+        `Hello ${STORE.name}, I would like to enquire about this order:`,
+        "",
+        ...items.map(item => `${item.name} x ${item.qty} — ${formatPrice(item.price * item.qty)}`),
+        "",
+        `Subtotal: ${formatPrice(total)}`,
+        "Please confirm stock, collection or delivery availability, fees and final total."
+      ].join("\n");
+
+      window.open(
+        `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`,
+        "_blank",
+        "noopener"
+      );
+    });
+
+    document.getElementById("age-yes").addEventListener("click", () => {
+      document.getElementById("age-overlay").hidden = true;
+    });
+
+    document.getElementById("age-no").addEventListener("click", () => {
+      document.body.innerHTML =
+        '<main style="text-align:center;padding:60px 20px"><h1>Access unavailable</h1><p>This website is for adults aged 18 and older.</p></main>';
+    });
+
+    renderProducts();
+    renderBasket();
+  </script>
+</body>
+</html>
